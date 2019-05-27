@@ -69,8 +69,7 @@
 				B27DA4E1229B0A0700DA0B24 /* Model */,
 				B27DA4D9229AF3F400DA0B24 /* Controller */,
 				B27DA4DA229AF40E00DA0B24 /* View */,
-				B27DA4CE229AE7CC00DA0B24 /* Assets.xcassets */,
-				B27DA4D0229AE7CC00DA0B24 /* LaunchScreen.storyboard */,
+				B2832313229C48FF000D0BFB /* Supporting Files */,
 				B27DA4D3229AE7CC00DA0B24 /* Info.plist */,
 			);
 			path = "Task-Manager";
@@ -104,6 +103,15 @@
 				B2832311229C090B000D0BFB /* taskBank.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B2832313229C48FF000D0BFB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B27DA4CE229AE7CC00DA0B24 /* Assets.xcassets */,
+				B27DA4D0229AE7CC00DA0B24 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

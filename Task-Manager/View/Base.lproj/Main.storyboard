@@ -52,7 +52,6 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="8Ew-ZE-8PJ" id="PSB-7i-IBe"/>
                         <outlet property="taskTableView" destination="8Ew-ZE-8PJ" id="a9z-hZ-JHx"/>
                     </connections>
                 </tableViewController>

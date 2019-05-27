@@ -9,10 +9,10 @@
 class Task {
     //Add task properties here
     
-    var taskTitle : String
-    var completionDate : String
-    var categoryName : String
-    var categoryColour : String
+    var taskTitle : String = ""
+    var completionDate : String = ""
+    var categoryName : String = ""
+    var categoryColour : String = ""
     
     init(text : String, ctgName : String, colour : String, date : String) {
         

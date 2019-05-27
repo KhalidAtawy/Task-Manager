@@ -12,12 +12,15 @@ class TaskManagerViewController: UITableViewController, AddTask {
     
 
     //intialize variables here
-    var allTasks = taskBank ()
+  //  var allTasks = taskBank ()
+    var taskList = [Task] ()
     
-    //var tasksArray : [Task] = [Task]()
     var itemArray = ["task 1", "task 2", "task 3"]
     
+    
     @IBOutlet var taskTableView: UITableView!
+    
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,10 @@ class TaskManagerViewController: UITableViewController, AddTask {
         configureTableView()
         
         
+        if let items = defaults.array(forKey: "ListArray") as? [Task] {
+            taskList = items
+        }
+        
     }
 
     
@@ -41,7 +48,7 @@ class TaskManagerViewController: UITableViewController, AddTask {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        // return itemArray.count //change it to tasksArray
         
-        return allTasks.tasksArray.count
+        return taskList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,8 +58,8 @@ class TaskManagerViewController: UITableViewController, AddTask {
         //for using the testing arary
         //cell.taskTitle.text = itemArray[indexPath.row]
         
-        cell.taskTitle.text = allTasks.tasksArray[indexPath.row].taskTitle
-        cell.completionDate.text = allTasks.tasksArray[indexPath.row].completionDate
+        cell.taskTitle.text = taskList[indexPath.row].taskTitle
+        cell.completionDate.text = taskList[indexPath.row].completionDate
         
         return cell
     }
@@ -106,13 +113,15 @@ class TaskManagerViewController: UITableViewController, AddTask {
     
     //MARK:- addTask function
     func addTask(nameTxt: String, ctgNameTxt: String, ctgColourTxt: String, completionDateTxt: String) {
-        allTasks.tasksArray.append(Task(text: nameTxt, ctgName: ctgNameTxt, colour: ctgNameTxt, date: completionDateTxt))
+        taskList.append(Task(text: nameTxt, ctgName: ctgNameTxt, colour: ctgNameTxt, date: completionDateTxt))
         
+        defaults.set(taskList, forKey: "ListArray")
         
         tableView.reloadData()
         
     }
     
+    // allows other viewController to edit
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let vc = segue.destination as! taskDetailsViewController
         vc.addTaskDelegate = self
