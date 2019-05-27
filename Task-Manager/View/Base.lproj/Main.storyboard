@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,14 +33,147 @@
                             <outlet property="delegate" destination="xDp-nO-vcX" id="e5l-PV-mZT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tasks" id="9T7-GF-yMK"/>
+                    <navigationItem key="navigationItem" title="Tasks" id="9T7-GF-yMK">
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="OGS-6B-1ba">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="xDp-nO-vcX" id="Xx8-wK-OK3"/>
+                                    <segue destination="mrQ-BH-cPs" kind="show" identifier="goToDetailScreen" id="0We-fn-wAZ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Settings" id="5LN-e4-uqH">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="settingsButtonPressed:" destination="xDp-nO-vcX" id="D3i-o1-3Vy"/>
+                                    <segue destination="OxL-vR-C0s" kind="show" identifier="goToSettingsScreen" id="cTv-c5-oRJ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="8Ew-ZE-8PJ" id="PSB-7i-IBe"/>
                         <outlet property="taskTableView" destination="8Ew-ZE-8PJ" id="a9z-hZ-JHx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmk-sq-sJ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1426" y="126"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="tgy-HJ-Sn5">
+            <objects>
+                <viewController id="OxL-vR-C0s" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u9G-Dc-5pT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Z1l-lW-LUx"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="coB-V0-RL4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JZy-gS-3qW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2537" y="497"/>
+        </scene>
+        <!--Task Details-->
+        <scene sceneID="fgG-VV-J5J">
+            <objects>
+                <viewController id="mrQ-BH-cPs" customClass="taskDetailsViewController" customModule="Task_Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WJK-aX-MFD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4i-LC-jXA">
+                                <rect key="frame" x="16" y="151" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnO-y2-vhN">
+                                <rect key="frame" x="16" y="196" width="120" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category Colour" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxn-XC-9dg">
+                                <rect key="frame" x="16" y="240" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="add a task name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n8T-Lo-5tn">
+                                <rect key="frame" x="152" y="142" width="192" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="add a category name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uq3-FE-PqX">
+                                <rect key="frame" x="152" y="191" width="192" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="add a category colour name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yU9-RH-q7h">
+                                <rect key="frame" x="153" y="237" width="192" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="dd/mm/yyy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J3L-uE-hHa">
+                                <rect key="frame" x="153" y="286" width="192" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Completion Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWO-7a-LIu">
+                                <rect key="frame" x="16" y="291" width="129" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4gK-CM-7RQ">
+                                <rect key="frame" x="104" y="410" width="66" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.17878958582878113" green="0.76549595594406128" blue="0.92627471685409546" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Save new">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="SaveButtonPressed:" destination="mrQ-BH-cPs" eventType="touchUpInside" id="uIH-4s-YQV"/>
+                                </connections>
+                            </button>
+                            <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMt-64-9LE">
+                                <rect key="frame" x="217" y="410" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.17878958582878113" green="0.76549595594406128" blue="0.92627471685409546" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Save edit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="RzG-gv-QBM"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Task Details" id="uLn-ZQ-gFW"/>
+                    <connections>
+                        <outlet property="categoryColourText" destination="yU9-RH-q7h" id="I9A-Eq-3mN"/>
+                        <outlet property="categoryNameText" destination="Uq3-FE-PqX" id="oom-fO-rxd"/>
+                        <outlet property="completionDateText" destination="J3L-uE-hHa" id="6uo-a4-Dja"/>
+                        <outlet property="nameText" destination="n8T-Lo-5tn" id="LHD-l3-jxa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zm1-W7-CjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2536.8000000000002" y="-152.47376311844079"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O7V-5t-vf2">

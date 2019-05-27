@@ -8,16 +8,21 @@
 
 import UIKit
 
-class TaskManagerViewController: UITableViewController {
+class TaskManagerViewController: UITableViewController, AddTask {
+    
 
     //intialize variables here
-    let tasksArray : [Task] = [Task]()
-    let itemArray = ["task 1", "task 2", "task 3"]
+    var allTasks = taskBank ()
+    
+    //var tasksArray : [Task] = [Task]()
+    var itemArray = ["task 1", "task 2", "task 3"]
     
     @IBOutlet var taskTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
         
         //TODO: Regirster TaskCell.xib file
@@ -25,6 +30,8 @@ class TaskManagerViewController: UITableViewController {
         
         //call configureTableView
         configureTableView()
+        
+        
     }
 
     
@@ -32,16 +39,20 @@ class TaskManagerViewController: UITableViewController {
     //MARK: - Tableview Datasource Methods (numOfRows/ CellForRow)
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemArray.count //change it to tasksArray
+       // return itemArray.count //change it to tasksArray
+        
+        return allTasks.tasksArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customTaskCell", for: indexPath) as! TaskCell
         
-        cell.taskTitle.text = itemArray[indexPath.row]
-        //cell.taskTitle.text = tasksArray[indexPath.row].taskTitle
-        //cell.completionDate.text = tasksArray[indexPath.row].completionDate
+        //for using the testing arary
+        //cell.taskTitle.text = itemArray[indexPath.row]
+        
+        cell.taskTitle.text = allTasks.tasksArray[indexPath.row].taskTitle
+        cell.completionDate.text = allTasks.tasksArray[indexPath.row].completionDate
         
         return cell
     }
@@ -60,6 +71,9 @@ class TaskManagerViewController: UITableViewController {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        //Open details screen if clicked on the task
+        performSegue(withIdentifier: "goToDetailScreen", sender: self)
     }
 
     
@@ -73,5 +87,36 @@ class TaskManagerViewController: UITableViewController {
     
     
     
+    /////////////////////////////////////////////
+    
+    //MARK: - Settings button pressed
+    
+    @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "goToSettingsScreen", sender: self)
+    }
+    
+
+    //MARK: - Add button pressed
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "goToDetailScreen", sender: self)
+                
+    }
+
+    
+    //MARK:- addTask function
+    func addTask(nameTxt: String, ctgNameTxt: String, ctgColourTxt: String, completionDateTxt: String) {
+        allTasks.tasksArray.append(Task(text: nameTxt, ctgName: ctgNameTxt, colour: ctgNameTxt, date: completionDateTxt))
+        
+        
+        tableView.reloadData()
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! taskDetailsViewController
+        vc.addTaskDelegate = self
+        
+    }
 }
 
