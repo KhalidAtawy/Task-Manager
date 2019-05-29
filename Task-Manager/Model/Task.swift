@@ -5,20 +5,21 @@
 //  Created by Khalid Saleh Elatawy on 5/26/19.
 //  Copyright © 2019 Khalid Saleh Elatawy. All rights reserved.
 //
+import Foundation
 
-class Task {
+class Task: Codable {
     //Add task properties here
     
     var taskTitle : String = ""
     var completionDate : String = ""
     var categoryName : String = ""
-    var categoryColour : String = ""
+    var categoryColourIndex : Int = 0
     
-    init(text : String, ctgName : String, colour : String, date : String) {
+    init(text : String, ctgName : String, colourIndex : Int, date : String) {
         
         taskTitle = text
         categoryName = ctgName
-        categoryColour = colour
+        categoryColourIndex = colourIndex
          completionDate = date
         
     }
