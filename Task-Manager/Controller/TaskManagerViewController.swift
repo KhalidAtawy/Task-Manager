@@ -38,12 +38,7 @@ class TaskManagerViewController: UITableViewController, AddInsertDeleteTask, Lea
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //MARK: - Notification Authorization
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (didAllow, error) in
-        }
-        
-        
-        
+
         // Do any additional setup after loading the view, typically from a nib.
         print(dataFilePath!)
         //TODO: Regirster TaskCell.xib file
@@ -107,15 +102,9 @@ class TaskManagerViewController: UITableViewController, AddInsertDeleteTask, Lea
 
     }
     
-//    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//        cellPressed = false
-//    }
-
-    
     
     /////////////////////////////////////////////////
     //TODO: Declare configureTableView here:
-    
     func configureTableView() {
         taskTableView.rowHeight = UITableView.automaticDimension
         taskTableView.estimatedRowHeight = 120.0
@@ -125,7 +114,6 @@ class TaskManagerViewController: UITableViewController, AddInsertDeleteTask, Lea
     /////////////////////////////////////////////
     
     //MARK: - Settings button pressed
-    
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "goToSettingsScreen", sender: self)
     }
@@ -141,8 +129,6 @@ class TaskManagerViewController: UITableViewController, AddInsertDeleteTask, Lea
 
     
     //MARK:- Protocol Methods (addInsertDeleteTask function - leaveTaskDetailVC)
-    
-    
     func addInsertDeleteTask(nameTxt: String, ctgNameTxt: String, colourIndexTxt: Int, completionDateTxt: String, isDelete: Bool) {
         
         if isDelete == false {
@@ -194,7 +180,6 @@ class TaskManagerViewController: UITableViewController, AddInsertDeleteTask, Lea
     }
     
     //MARK: - Model Manupulation Methods ( Saving"encoding" and Loading"decoding" data)
-    
     func saveItems() {
         let encoder = PropertyListEncoder()
         
@@ -221,7 +206,6 @@ class TaskManagerViewController: UITableViewController, AddInsertDeleteTask, Lea
     
     
     //MARK: - applying swipe - remove to cell
-    
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }

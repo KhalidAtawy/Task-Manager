@@ -16,6 +16,9 @@ class settingsViewController: UIViewController  {
     
     override func viewDidLoad() {
         
+        //MARK: - Notification Authorization
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (didAllow, error) in
+        }
         if let switchState = defaults.bool(forKey: "notificationState") as? Bool{
             switchOutlet.isOn = switchState
         }
@@ -28,15 +31,6 @@ class settingsViewController: UIViewController  {
         
         defaults.set(switchOutlet.isOn, forKey: "notificationState")
         //        //MARK: - Create the notification
-        //        let content = UNMutableNotificationContent()
-        //        content.title = "Task Title"
-        //        content.body = "Task information"
-        //        content.badge = 1
-        //
-        //        // Request
-        //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-        //        let request = UNNotificationRequest(identifier: "request", content: content, trigger: trigger)
-        //        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 
         print ("hello")
         if switchOutlet.isOn

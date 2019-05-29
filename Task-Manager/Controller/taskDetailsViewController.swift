@@ -55,11 +55,6 @@ class taskDetailsViewController: UIViewController {
         
         //MARK: - Call pickerViews
        createDatePicker()
-        
-        
-        
-        
-        
         createCategoryPicker()
         //createColourPicker()
 //////////////////////////////////////////////////////////
@@ -82,9 +77,6 @@ class taskDetailsViewController: UIViewController {
     //MARK: - Save Button Pressed
     @IBAction func SaveButtonPressed(_ sender: Any) {
         
-        //allTasks.tasksArray.append(Task(text: nameText.text!, date: completionDateText.text!, ctgName: categoryNameText.text!, colour: categoryNameText.text!))
-       // taskManager.tableView.reloadData()
-        
         addInsertDeleteTaskDelegate?.addInsertDeleteTask(nameTxt: nameText.text!, ctgNameTxt: categoryNameText.text!, colourIndexTxt: selectedColourIndex, completionDateTxt: completionDateText.text!, isDelete: false)
     }
     
@@ -94,7 +86,6 @@ class taskDetailsViewController: UIViewController {
     @IBAction func trashButtonPressed(_ sender: UIBarButtonItem) {
         
         clearTexts()
-        //self.view.setNeedsDisplay()
         addInsertDeleteTaskDelegate?.addInsertDeleteTask(nameTxt: nameText.text!, ctgNameTxt: categoryNameText.text!, colourIndexTxt: selectedColourIndex, completionDateTxt: completionDateText.text!, isDelete: true)
         
     }
